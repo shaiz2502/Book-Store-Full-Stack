@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React from "react";
 import bannerImage from "../../public/Banner.png"
+import { Link } from "react-router-dom";
 
 function Banner() {
     return (
@@ -31,7 +32,7 @@ function Banner() {
                             <input type="text" className="grow" placeholder="Email" />
                         </label>
                     </div>
-                    <button className="btn mt-6 btn-secondary">Secondary</button>
+                    <Link to="/course" className="btn mt-6 btn-secondary">Get Started</Link>
                 </div>
                 <div className="w-full md:w-1/2 order-1">
                     <img src={bannerImage} className="w-90 h-90" alt="" />

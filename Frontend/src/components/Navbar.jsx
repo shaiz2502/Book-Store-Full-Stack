@@ -1,8 +1,13 @@
 /* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import Login from "./Login";
+import { useAuth } from "../context/AuthProvider";
+import Logout from "./Logout";
 
 function Navbar() {
+
+    const [authUser, setAuthUser] = useAuth();
+
 
     const [sticky, setSticky] = useState(false)
     useEffect(() => {
@@ -79,7 +84,7 @@ function Navbar() {
                         </div>
                         <div className="hidden md:block">
                             <label className="px-3 py-2 border rounded-md flex items-center gap-2">
-                                <input type="text" className="grow outline-none" placeholder="Search" />
+                                <input type="text" className="grow bg-transparent outline-none" placeholder="Search" />
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 16 16"
@@ -92,12 +97,17 @@ function Navbar() {
                                 </svg>
                             </label>
                         </div>
-                        <div>
-                            <a className="bg-black text-white px-4 py-2 rounded-md hover:bg-slate-800 duration-300 cursor-pointer"
-                                onClick={() => document.getElementById("my_modal_3").showModal()}
-                            >Login</a>
-                            <Login />
-                        </div>
+                        {
+                            authUser ? <Logout /> :
+                                (
+                                    <div>
+                                        <a className="bg-black text-white px-4 py-2 rounded-md hover:bg-pink-500 duration-300 cursor-pointer"
+                                            onClick={() => document.getElementById("my_modal_3").showModal()}
+                                        >Login</a>
+                                        <Login />
+                                    </div>
+                                )
+                        }
                     </div>
                 </div>
             </div>
